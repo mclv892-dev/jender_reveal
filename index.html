@@ -59,38 +59,34 @@ body {
   height: 250px;
   margin: 30px auto 0;
   display: none;
-  overflow: hidden;
-  padding-top: 40px; /* 文字分のスペースを上部に確保 */
+  overflow: hidden; /* はみ出し隠し */
 }
 
 #roulette-img {
   width: 100%;
-  height: calc(100% - 40px); /* 画像高さを文字分だけ減らす */
+  height: 100%;
   object-fit: cover;
+  object-position: center center; /* 中央トリミング */
   border-radius: 14px;
 }
 
-/* ルーレット中の文字 */
 #overlay-text {
   position: absolute;
-  top: 0;              /* 画像の上に被らない位置 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
+  top: 2px;
+  width: 100%;
   text-align: center;
   font-size: 34px;
   font-weight: 800;
   color: white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
   display: none;
-  pointer-events: none;
 }
 
 #result-text {
   margin-top: 20px;
   font-size: 42px;
   font-weight: 900;
-  color: #D63384;
+  color: #D63384; /* 初期値。JSで書き換えます */
 }
 
 /* STARTボタン */
@@ -133,18 +129,17 @@ body {
     width: 100%;
     height: 200px;
     margin: 15px auto 0;
-    padding-top: 30px; /* 文字分スペース */
   }
 
   #roulette-img {
     width: 100%;
-    height: calc(100% - 30px);
+    height: 100%;
     object-fit: cover;
   }
 
   #overlay-text {
     font-size: 4.5vw;
-    top: 0;
+    top: 4px;
   }
 
   #result-text {
@@ -192,7 +187,11 @@ let girlSwapTimer = null;
 function startRoulette() {
   document.getElementById("start-btn").disabled = true;
 
-  document.getElementById("result-text").innerText = "";
+  const resultText = document.getElementById("result-text");
+  resultText.innerText = "";
+  // 結果表示テキストの色はリセット
+  resultText.style.color = "#D63384";
+
   document.body.style.background = "white";
 
   document.getElementById("image-area").style.display = "block";
@@ -222,10 +221,15 @@ function stopRoulette() {
   document.getElementById("roulette-img").style.display = "none";
 
   setTimeout(() => {
-    document.getElementById("roulette-img").style.display = "block";
-    document.getElementById("roulette-img").src = "girl.jpg";
+    const rouletteImg = document.getElementById("roulette-img");
+    const resultText = document.getElementById("result-text");
 
-    document.getElementById("result-text").innerText = "GIRL";
+    rouletteImg.style.display = "block";
+    rouletteImg.src = "girl.jpg";
+
+    resultText.innerText = "GIRL";
+    // 最終結果の文字色をルーレット中のGIRL色に揃える
+    resultText.style.color = "#FFB7D5";
 
     document.body.style.background = "#FFE4F0";
 
