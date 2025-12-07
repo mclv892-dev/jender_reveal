@@ -9,6 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
 <style>
+/* 全体共通 */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -37,12 +42,15 @@ body {
   opacity: 0.9;
 }
 
-/* 中央エリア */
+/* 中央エリア PC版固定サイズ */
 .container {
   margin-top: 70px;
   position: relative;
   z-index: 10;
   padding: 0 20px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-wrapper {
@@ -104,33 +112,30 @@ body {
   cursor: not-allowed;
 }
 
-/* ======= スマホ対応（約2.3倍サイズ、横スクロールありOK版） ======= */
+/* ======= スマホ対応 ======= */
 @media (max-width: 480px) {
   .container {
-    width: 90%;
-    max-width: 320px;
+    width: 90vw;           /* 画面幅の90% */
+    max-width: 320px;      /* 最大幅を320pxに */
     margin-top: 50px;
-
-    /* ここを変更 */
     margin-left: auto;
     margin-right: auto;
-    padding: 0 5%;
+    padding: 0 5vw;
   }
 
   .image-wrapper {
-    width: 80vw;  /* 画面幅の80% */
-    max-width: 250px; /* PC版の最大サイズ */
+    width: 100%;       /* container幅いっぱい */
     height: auto;
     margin: 20px auto 0;
   }
 
   #roulette-img {
-    width: 100%; /* 親の幅に合わせる */
+    width: 100%;
     height: auto;
   }
 
   #overlay-text {
-    font-size: 5vw; /* 画面幅に応じて文字サイズ調整 */
+    font-size: 5vw;  /* 画面幅に合わせた文字サイズ */
     top: 6px;
   }
 
@@ -149,8 +154,6 @@ body {
     height: 8vw;
   }
 }
-
-
 </style>
 </head>
 
