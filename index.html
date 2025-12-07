@@ -5,118 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gender Reveal</title>
 
-<!-- Poppinsフォント -->
+<!-- ★ Poppinsフォント -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
 <style>
-/* 共通設定 */
-* {
-  box-sizing: border-box;
-}
+  /* 全体共通 */
+  * {
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background: white;
-}
+  body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center; /* 重要：中央寄せのベース */
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
 
-/* 風船コンテナ */
-#balloon-container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 5;
-}
+  /* 風船コンテナ */
+  #balloon-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+  }
 
-.balloon {
-  position: absolute;
-  width: 30px;
-  height: 40px;
-  border-radius: 50%;
-  opacity: 0.9;
-}
+  .balloon {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0.9;
+  }
 
-/* 中央エリア PC固定 */
-.container {
-  margin-top: 70px;
-  position: relative;
-  z-index: 10;
-  padding: 0 20px;
-  width: 250px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  /* 中央エリア */
+  .container {
+    width: 250px;
+    margin: 70px auto 0; /* 横中央寄せ */
+    position: relative;
+    z-index: 10;
+    padding: 0 20px;
+  }
 
-/* 画像枠 */
-.image-wrapper {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  margin: 30px auto 0;
-  display: none;
-  overflow: hidden;
-}
+  .image-wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 30px auto 0; /* 横中央寄せ */
+    display: none;
+    overflow: hidden;
+  }
 
-/* 画像 */
-#roulette-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 14px;
-}
+  #roulette-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* はみ出し部分をトリミング */
+    border-radius: 14px;
+  }
 
-/* ルーレット中の文字（画像上部の枠外に表示） */
-#overlay-text {
-  position: absolute;
-  bottom: 100%; /* 画像の上端ちょうど外側に */
-  margin-bottom: 6px; /* 少し余白 */
-  width: 100%;
-  text-align: center;
-  font-size: 34px;
-  font-weight: 800;
-  color: white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
-  display: none;
-}
+  /* ルーレット中の文字表示 */
+  #overlay-text {
+    position: absolute;
+    top: 8px; /* 画像の上寄せ */
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    display: none;
+    pointer-events: none; /* 文字の上クリック妨げ防止 */
+  }
 
-/* 結果テキスト */
-#result-text {
-  margin-top: 20px;
-  font-size: 42px;
-  font-weight: 900;
-  color: #D63384;
-}
+  #result-text {
+    margin-top: 20px;
+    font-size: 42px;
+    font-weight: 900;
+    color: #D63384;
+  }
 
-/* STARTボタン */
-#start-btn {
-  margin-top: 25px;
-  font-size: 22px;
-  padding: 14px 42px;
-  border-radius: 40px;
-  border: 2px solid black;
-  background: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-  color: black;
-}
-#start-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-}
-#start-btn:active {
-  transform: translateY(1px);
-}
-#start-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+  /* STARTボタン */
+  #start-btn {
+    margin-top: 25px;
+    font-size: 22px;
+    padding: 14px 42px;
+    border-radius: 40px;
+    border: 2px solid black;
+    background: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    color: black;
+  }
+  #start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  }
+  #start-btn:active {
+    transform: translateY(1px);
+  }
+  #start-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ======= スマホ対応 ======= */
+  @media (max-width: 480px) {
+    .container {
+      width: 80vw;
+      max-width: 280px;
+      margin: 40px auto 0;
+      padding: 0 4vw;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: 200px;
+      margin: 15px auto 0;
+    }
+
+    #roulette-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #overlay-text {
+      font-size: 4.5vw;
+      top: 4px;
+    }
+
+    #result-text {
+      font-size: 5vw;
+      margin-top: 12px;
+    }
+
+    #start-btn {
+      font-size: 4vw;
+      padding: 10px 4vw;
+    }
+
+    .balloon {
+      width: 5vw;
+      height: 7vw;
+    }
+  }
 </style>
 </head>
 
@@ -138,112 +175,112 @@ body {
 </div>
 
 <script>
-let images = ["boy.jpg", "girl.jpg"];
-let labels = ["BOY", "GIRL"];
-let rouletteTimer = null;
-let girlSwapTimer = null;
+  let images = ["boy.jpg", "girl.jpg"];
+  let labels = ["BOY", "GIRL"];
+  let rouletteTimer = null;
+  let girlSwapTimer = null;
 
-/* ルーレット開始 */
-function startRoulette() {
-  document.getElementById("start-btn").disabled = true;
+  /* ルーレット開始 */
+  function startRoulette() {
+    document.getElementById("start-btn").disabled = true;
 
-  document.getElementById("result-text").innerText = "";
-  document.body.style.background = "white";
+    document.getElementById("result-text").innerText = "";
+    document.body.style.background = "white";
 
-  document.getElementById("image-area").style.display = "block";
-  document.getElementById("overlay-text").style.display = "block";
-  document.getElementById("roulette-img").style.display = "block";
-
-  if (girlSwapTimer) clearInterval(girlSwapTimer);
-
-  rouletteTimer = setInterval(() => {
-    let idx = Math.floor(Math.random() * 2);
-
-    document.getElementById("roulette-img").src = images[idx];
-    document.getElementById("overlay-text").innerText = labels[idx];
-
-    document.getElementById("overlay-text").style.color =
-      labels[idx] === "BOY" ? "#8EC6FF" : "#FFB7D5";
-  }, 180);
-
-  setTimeout(stopRoulette, 5000);
-}
-
-/* ルーレット停止 */
-function stopRoulette() {
-  clearInterval(rouletteTimer);
-
-  document.getElementById("overlay-text").style.display = "none";
-  document.getElementById("roulette-img").style.display = "none";
-
-  setTimeout(() => {
+    document.getElementById("image-area").style.display = "block";
+    document.getElementById("overlay-text").style.display = "block";
     document.getElementById("roulette-img").style.display = "block";
-    document.getElementById("roulette-img").src = "girl.jpg";
 
-    document.getElementById("result-text").innerText = "GIRL";
+    if (girlSwapTimer) clearInterval(girlSwapTimer);
 
-    document.body.style.background = "#FFE4F0";
+    rouletteTimer = setInterval(() => {
+      let idx = Math.floor(Math.random() * 2);
 
-    balloonStart();
+      document.getElementById("roulette-img").src = images[idx];
+      document.getElementById("overlay-text").innerText = labels[idx];
 
-    setTimeout(() => {
-      startGirlSwap();
-    }, 2000);
+      document.getElementById("overlay-text").style.color =
+        labels[idx] === "BOY" ? "#8EC6FF" : "#FFB7D5";
+    }, 180);
 
-    document.getElementById("start-btn").disabled = false;
-  }, 1000);
-}
-
-/* GIRL画像 3枚交互アニメ */
-function startGirlSwap() {
-  let idx = 0;
-  const girlImages = ["girl.jpg", "taiga.jpg", "minori.jpg"];
-
-  girlSwapTimer = setInterval(() => {
-    idx = (idx + 1) % girlImages.length;
-    document.getElementById("roulette-img").src = girlImages[idx];
-  }, 600);
-}
-
-/* 風船アニメ */
-function balloonStart() {
-  const container = document.getElementById("balloon-container");
-  container.innerHTML = "";
-
-  const colors = ["pink", "skyblue", "gold", "violet", "lightgreen", "tomato"];
-
-  for (let i = 0; i < 25; i++) {
-    let balloon = document.createElement("div");
-    balloon.classList.add("balloon");
-    balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-    balloon.style.left = Math.random() * 100 + "vw";
-    balloon.style.top = (100 + Math.random() * 20) + "vh";
-
-    balloon.dataset.sway = (Math.random() * 2 - 1).toFixed(2);
-
-    container.appendChild(balloon);
+    setTimeout(stopRoulette, 5500);
   }
 
-  animateBalloons();
-}
+  /* ルーレット停止 */
+  function stopRoulette() {
+    clearInterval(rouletteTimer);
 
-function animateBalloons() {
-  const balloons = document.querySelectorAll(".balloon");
+    document.getElementById("overlay-text").style.display = "none";
+    document.getElementById("roulette-img").style.display = "none";
 
-  balloons.forEach(b => {
-    let top = parseFloat(b.style.top);
-    let left = parseFloat(b.style.left);
-    let sway = parseFloat(b.dataset.sway);
+    setTimeout(() => {
+      document.getElementById("roulette-img").style.display = "block";
+      document.getElementById("roulette-img").src = "girl.jpg";
 
-    b.style.top = (top - 0.6) + "vh";
-    b.style.left = (left + sway * 0.3) + "vw";
+      document.getElementById("result-text").innerText = "GIRL";
 
-    if (top < -10) b.style.top = "110vh";
-  });
+      document.body.style.background = "#FFE4F0";
 
-  requestAnimationFrame(animateBalloons);
-}
+      balloonStart();
+
+      setTimeout(() => {
+        startGirlSwap();
+      }, 2000);
+
+      document.getElementById("start-btn").disabled = false;
+    }, 1000);
+  }
+
+  /* GIRL画像 3枚交互アニメ */
+  function startGirlSwap() {
+    let idx = 0;
+    const girlImages = ["girl.jpg", "taiga.jpg", "minori.jpg"];
+
+    girlSwapTimer = setInterval(() => {
+      idx = (idx + 1) % girlImages.length;
+      document.getElementById("roulette-img").src = girlImages[idx];
+    }, 600);
+  }
+
+  /* 風船アニメ */
+  function balloonStart() {
+    const container = document.getElementById("balloon-container");
+    container.innerHTML = "";
+
+    const colors = ["pink", "skyblue", "gold", "violet", "lightgreen", "tomato"];
+
+    for (let i = 0; i < 25; i++) {
+      let balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.top = (100 + Math.random() * 20) + "vh";
+
+      balloon.dataset.sway = (Math.random() * 2 - 1).toFixed(2);
+
+      container.appendChild(balloon);
+    }
+
+    animateBalloons();
+  }
+
+  function animateBalloons() {
+    const balloons = document.querySelectorAll(".balloon");
+
+    balloons.forEach(b => {
+      let top = parseFloat(b.style.top);
+      let left = parseFloat(b.style.left);
+      let sway = parseFloat(b.dataset.sway);
+
+      b.style.top = (top - 0.6) + "vh";
+      b.style.left = (left + sway * 0.3) + "vw";
+
+      if (top < -10) b.style.top = "110vh";
+    });
+
+    requestAnimationFrame(animateBalloons);
+  }
 </script>
 
 </body>
