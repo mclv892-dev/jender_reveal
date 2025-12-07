@@ -103,40 +103,40 @@ body {
     cursor: not-allowed;
 }
 
-/* ======= スマホ対応 ======= */
+/* ======= スマホ対応（拡大版） ======= */
 @media (max-width: 480px) {
     .container {
-        margin-top: 40px;
-        padding: 0 10px;
+        margin-top: 50px;
+        padding: 0 15px;
     }
 
     .image-wrapper {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
     }
 
     #roulette-img {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
     }
 
     #overlay-text {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     #result-text {
-        font-size: 32px;
-        margin-top: 16px;
+        font-size: 38px;
+        margin-top: 20px;
     }
 
     #start-btn {
-        font-size: 18px;
-        padding: 12px 30px;
+        font-size: 20px;
+        padding: 14px 38px;
     }
 
     .balloon {
-        width: 20px;
-        height: 30px;
+        width: 24px;
+        height: 36px;
     }
 }
 </style>
@@ -203,7 +203,6 @@ function stopRoulette() {
     document.getElementById("overlay-text").style.display = "none";
     document.getElementById("roulette-img").style.display = "none";
 
-    // ★ 0.5秒 → 1秒へ変更
     setTimeout(() => {
         document.getElementById("roulette-img").style.display = "block";
         document.getElementById("roulette-img").src = "girl.jpg";
@@ -214,7 +213,6 @@ function stopRoulette() {
 
         balloonStart();
 
-        // ★ 2秒後から3画像交互スタート
         setTimeout(() => {
             startGirlSwap();
         }, 2000);
