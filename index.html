@@ -105,49 +105,42 @@ body {
 
 /* ======= スマホ対応（約2.3倍サイズ、横スクロールありOK版） ======= */
 @media (max-width: 480px) {
-  body {
-    overflow-x: auto; /* 横スクロール許可 */
-  }
-
+  /* 何もしない、もしくは通常サイズを維持 */
   .container {
-    margin-top: 60px;
-    padding: 0 10px;
-    width: 385px; /* 画像幅＋左右余白 */
+    width: auto;
   }
 
   .image-wrapper {
-    width: 375px;      /* 250px × 1.5倍 */
-    height: 375px;
+    width: 250px;
+    height: 250px;
     margin: 30px auto 0;
   }
 
   #roulette-img {
-    width: 375px;
-    height: 375px;
-    border-radius: 14px;
+    width: 250px;
+    height: 250px;
   }
 
+  /* 文字サイズは小さくならないよう調整可能 */
   #overlay-text {
-    font-size: 55px;
-    top: 14px;
+    font-size: 34px;
   }
 
   #result-text {
-    font-size: 58px;
-    margin-top: 28px;
+    font-size: 42px;
   }
 
   #start-btn {
-    font-size: 20px;
+    font-size: 22px;
     padding: 14px 42px;
-    border-radius: 40px;
   }
 
   .balloon {
-    width: 42px;
-    height: 56px;
+    width: 30px;
+    height: 40px;
   }
 }
+
 
 
 </style>
