@@ -59,14 +59,14 @@ body {
   height: 250px;
   margin: 30px auto 0;
   display: none;
-  overflow: hidden; /* はみ出し隠し */
+  overflow: hidden;
 }
 
 #roulette-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; /* 中央トリミング */
+  object-position: center center;
   border-radius: 14px;
 }
 
@@ -77,8 +77,8 @@ body {
   text-align: center;
   font-size: 34px;
   font-weight: 800;
-  color: white;
-  text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+  color: #FFB7D5; /* ルーレット中のGIRL色 */
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
   display: none;
 }
 
@@ -86,7 +86,7 @@ body {
   margin-top: 20px;
   font-size: 42px;
   font-weight: 900;
-  color: #D63384; /* 初期値。JSで書き換えます */
+  color: #D63384; /* 最終結果のピンク */
 }
 
 /* STARTボタン */
@@ -127,7 +127,7 @@ body {
 
   .image-wrapper {
     width: 100%;
-    height: 200px;
+    height: 250px; /* 高さ固定に戻す */
     margin: 15px auto 0;
   }
 
@@ -140,11 +140,14 @@ body {
   #overlay-text {
     font-size: 4.5vw;
     top: 4px;
+    color: #FFB7D5; /* ルーレット中のGIRL色 */
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
   }
 
   #result-text {
     font-size: 5vw;
     margin-top: 12px;
+    color: #D63384; /* 最終結果のピンク */
   }
 
   #start-btn {
@@ -165,7 +168,7 @@ body {
 <div id="balloon-container"></div>
 
 <div class="container">
-  <h1 id="title"> BOY or GIRL ?</h1>
+  <h1 id="title">BOY or GIRL ?</h1>
 
   <div class="image-wrapper" id="image-area">
     <img id="roulette-img" src="boy.jpg" alt="ルーレット画像" />
@@ -187,11 +190,7 @@ let girlSwapTimer = null;
 function startRoulette() {
   document.getElementById("start-btn").disabled = true;
 
-  const resultText = document.getElementById("result-text");
-  resultText.innerText = "";
-  // 結果表示テキストの色はリセット
-  resultText.style.color = "#D63384";
-
+  document.getElementById("result-text").innerText = "";
   document.body.style.background = "white";
 
   document.getElementById("image-area").style.display = "block";
@@ -210,7 +209,7 @@ function startRoulette() {
       labels[idx] === "BOY" ? "#8EC6FF" : "#FFB7D5";
   }, 180);
 
-  setTimeout(stopRoulette, 7500);
+  setTimeout(stopRoulette, 5500);
 }
 
 /* ルーレット停止 */
@@ -228,8 +227,9 @@ function stopRoulette() {
     rouletteImg.src = "girl.jpg";
 
     resultText.innerText = "GIRL";
-    // 最終結果の文字色をルーレット中のGIRL色に揃える
-    resultText.style.color = "#FFB7D5";
+    // ここで色は濃いピンクに
+    resultText.style.color = "#D63384";
+    resultText.style.textShadow = "";
 
     document.body.style.background = "#FFE4F0";
 
