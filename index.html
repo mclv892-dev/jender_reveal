@@ -87,6 +87,10 @@ body {
   font-size: 50px;
   font-weight: 900;
   color: #D63384; /* 最終結果のピンク */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 /* STARTボタン */
@@ -168,7 +172,10 @@ body {
 <div id="balloon-container"></div>
 
 <div class="container">
-  <h1 id="title">BOY or GIRL ?</h1>
+  <!-- タイトル文字を画像に変更 -->
+  <h1 id="title">
+    <img src="boyorgirl.jpeg" alt="BOY or GIRL?" style="width: 100%; max-width: 250px; height: auto;" />
+  </h1>
 
   <div class="image-wrapper" id="image-area">
     <img id="roulette-img" src="boy.jpg" alt="ルーレット画像" />
@@ -209,7 +216,8 @@ function startRoulette() {
       labels[idx] === "BOY" ? "#8EC6FF" : "#FFB7D5";
   }, 180);
 
-  setTimeout(stopRoulette, 5500);
+  // 5.5秒 → 7.5秒に延長（+2秒）
+  setTimeout(stopRoulette, 7500);
 }
 
 /* ルーレット停止 */
@@ -226,8 +234,16 @@ function stopRoulette() {
     rouletteImg.style.display = "block";
     rouletteImg.src = "girl.jpg";
 
-    resultText.innerText = "GIRL";
-    // ここで色は濃いピンクに
+    // 画像両隣に追加して「GIRL」表示
+    resultText.innerHTML = `
+      <img src="stick.png" alt="stick" style="height: 50px; vertical-align: middle;">
+      <img src="candy.png" alt="candy" style="height: 50px; vertical-align: middle;">
+      GIRL
+      <img src="candy.png" alt="candy" style="height: 50px; vertical-align: middle;">
+      <img src="stick.png" alt="stick" style="height: 50px; vertical-align: middle;">
+    `;
+
+    // ピンク濃い色でスタイルはCSSで
     resultText.style.color = "#D63384";
     resultText.style.textShadow = "";
 
