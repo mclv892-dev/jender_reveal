@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gender Reveal</title>
 
-<!-- ★ Poppins 追加 -->
+<!-- Poppinsフォント -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
 <style>
-/* 全体共通 */
+/* 共通設定 */
 * {
   box-sizing: border-box;
 }
@@ -22,7 +22,7 @@ body {
   background: white;
 }
 
-/* 画面全体に風船 */
+/* 風船コンテナ */
 #balloon-container {
   position: fixed;
   left: 0;
@@ -42,7 +42,7 @@ body {
   opacity: 0.9;
 }
 
-/* 中央エリア PC版固定サイズ */
+/* 中央エリア PC固定 */
 .container {
   margin-top: 70px;
   position: relative;
@@ -53,36 +53,39 @@ body {
   margin-right: auto;
 }
 
+/* 画像枠 */
 .image-wrapper {
   position: relative;
   width: 250px;
   height: 250px;
   margin: 30px auto 0;
   display: none;
-  overflow: hidden; /* はみ出し隠し */
+  overflow: hidden;
 }
 
+/* 画像 */
 #roulette-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; /* 中央トリミング */
   border-radius: 14px;
 }
 
+/* ルーレット中の文字（画像上部の枠外に表示） */
 #overlay-text {
   position: absolute;
-  top: -30px;  /* 画像の上に表示 */
+  bottom: 100%; /* 画像の上端ちょうど外側に */
+  margin-bottom: 6px; /* 少し余白 */
   width: 100%;
   text-align: center;
   font-size: 34px;
   font-weight: 800;
   color: white;
-  text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
   display: none;
-  pointer-events: none;
 }
 
+/* 結果テキスト */
 #result-text {
   margin-top: 20px;
   font-size: 42px;
@@ -105,7 +108,7 @@ body {
 }
 #start-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0px 6px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 #start-btn:active {
   transform: translateY(1px);
@@ -115,21 +118,21 @@ body {
   cursor: not-allowed;
 }
 
-/* ======= スマホ対応 ======= */
+/* ===== スマホ対応 ===== */
 @media (max-width: 480px) {
   .container {
-    width: 80vw;
-    max-width: 280px;
-    margin-top: 40px;
+    width: 90vw;
+    max-width: 320px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 4vw;
+    padding: 0 5vw;
   }
 
   .image-wrapper {
     width: 100%;
-    height: 200px;
-    margin: 15px auto 0;
+    height: 250px;
+    margin: 20px auto 0;
   }
 
   #roulette-img {
@@ -139,23 +142,24 @@ body {
   }
 
   #overlay-text {
-    font-size: 4.5vw;
-    top: -20px;  /* スマホも画像の上に */
+    font-size: 5vw;
+    bottom: 100%;
+    margin-bottom: 6px;
   }
 
   #result-text {
-    font-size: 5vw;
-    margin-top: 12px;
+    font-size: 6vw;
+    margin-top: 16px;
   }
 
   #start-btn {
-    font-size: 4vw;
-    padding: 10px 4vw;
+    font-size: 4.5vw;
+    padding: 12px 5vw;
   }
 
   .balloon {
-    width: 5vw;
-    height: 7vw;
+    width: 6vw;
+    height: 8vw;
   }
 }
 </style>
@@ -207,7 +211,7 @@ function startRoulette() {
       labels[idx] === "BOY" ? "#8EC6FF" : "#FFB7D5";
   }, 180);
 
-  setTimeout(stopRoulette, 5500);
+  setTimeout(stopRoulette, 5000);
 }
 
 /* ルーレット停止 */
