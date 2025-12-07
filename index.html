@@ -103,46 +103,49 @@ body {
   cursor: not-allowed;
 }
 
-/* ======= スマホ対応（画面幅いっぱいで大きく表示） ======= */
+/* ======= スマホ対応（3倍サイズ、横スクロールありOK版） ======= */
 @media (max-width: 480px) {
+  body {
+    overflow-x: auto; /* 横スクロールOKに */
+  }
+
   .container {
     margin-top: 60px;
     padding: 0 10px;
+    width: 770px; /* 画面幅より大きい幅を固定 */
   }
 
   .image-wrapper {
-    width: 90vw;          /* 画面幅の90% */
-    height: auto;
-    max-height: 400px;    /* 最大高さを400pxに */
+    width: 750px;       /* 元の250pxの3倍 */
+    height: 750px;
     margin: 30px auto 0;
   }
 
   #roulette-img {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
+    width: 750px;
+    height: 750px;
     border-radius: 14px;
   }
 
   #overlay-text {
-    font-size: 48px;
-    top: 12px;
+    font-size: 100px;  /* 超大きめ */
+    top: 20px;
   }
 
   #result-text {
-    font-size: 50px;
-    margin-top: 24px;
+    font-size: 110px;
+    margin-top: 40px;
   }
 
   #start-btn {
-    font-size: 28px;
-    padding: 18px 48px;
-    border-radius: 50px;
+    font-size: 36px;
+    padding: 24px 72px;
+    border-radius: 60px;
   }
 
   .balloon {
-    width: 40px;
-    height: 54px;
+    width: 80px;
+    height: 108px;
   }
 }
 </style>
