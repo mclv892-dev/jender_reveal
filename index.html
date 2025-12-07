@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gender Reveal</title>
 
 <!-- ★ Poppins 追加 -->
@@ -41,6 +42,7 @@ body {
     margin-top: 70px;
     position: relative;
     z-index: 10;
+    padding: 0 20px;
 }
 
 .image-wrapper {
@@ -100,6 +102,43 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* ======= スマホ対応 ======= */
+@media (max-width: 480px) {
+    .container {
+        margin-top: 40px;
+        padding: 0 10px;
+    }
+
+    .image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+
+    #roulette-img {
+        width: 180px;
+        height: 180px;
+    }
+
+    #overlay-text {
+        font-size: 24px;
+    }
+
+    #result-text {
+        font-size: 32px;
+        margin-top: 16px;
+    }
+
+    #start-btn {
+        font-size: 18px;
+        padding: 12px 30px;
+    }
+
+    .balloon {
+        width: 20px;
+        height: 30px;
+    }
+}
 </style>
 </head>
 
@@ -111,7 +150,7 @@ body {
     <h1 id="title">BOY or GIRL ?</h1>
 
     <div class="image-wrapper" id="image-area">
-        <img id="roulette-img" src="boy.jpg">
+        <img id="roulette-img" src="boy.jpg" alt="ルーレット画像">
         <div id="overlay-text">BOY</div>
     </div>
 
@@ -137,6 +176,7 @@ function startRoulette() {
 
     document.getElementById("image-area").style.display = "block";
     document.getElementById("overlay-text").style.display = "block";
+    document.getElementById("roulette-img").style.display = "block";
 
     if (girlSwapTimer) clearInterval(girlSwapTimer);
 
