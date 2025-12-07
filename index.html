@@ -59,12 +59,14 @@ body {
   height: 250px;
   margin: 30px auto 0;
   display: none;
+  overflow: hidden; /* はみ出し隠し */
 }
 
 #roulette-img {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center center; /* 中央トリミング */
   border-radius: 14px;
 }
 
@@ -127,15 +129,16 @@ body {
     width: 100%;
     height: 250px;   /* 高さ固定 */
     margin: 20px auto 0;
+    overflow: hidden; /* はみ出し隠し */
   }
 
   #roulette-img {
     width: 100%;
-    height: 100%;    /* 高さを親に合わせる */
-    object-fit: cover; /* トリミングしながら表示 */
+    height: 100%;
+    object-fit: cover;
+    object-position: center center; /* 中央トリミング */
   }
 
-  /* 文字やボタンサイズはそのまま */
   #overlay-text {
     font-size: 5vw;
     top: 6px;
