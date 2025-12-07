@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gender Reveal</title>
 
-<!-- ★ Poppins フォント -->
+<!-- ★ Poppins 追加 -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
 <style>
@@ -60,11 +60,12 @@ body {
   margin: 30px auto 0;
   display: none;
   overflow: hidden;
+  padding-top: 40px; /* 文字分のスペースを上部に確保 */
 }
 
 #roulette-img {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px); /* 画像高さを文字分だけ減らす */
   object-fit: cover;
   border-radius: 14px;
 }
@@ -72,7 +73,7 @@ body {
 /* ルーレット中の文字 */
 #overlay-text {
   position: absolute;
-  top: 8px;
+  top: 0;              /* 画像の上に被らない位置 */
   left: 50%;
   transform: translateX(-50%);
   width: auto;
@@ -120,43 +121,45 @@ body {
 /* ======= スマホ対応 ======= */
 @media (max-width: 480px) {
   .container {
-    width: 250px;     /* PCと同じ固定幅に */
-    margin: 40px auto 0;
-    padding: 0 10px;
+    width: 80vw;
+    max-width: 280px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 4vw;
   }
 
   .image-wrapper {
-    width: 250px;     /* PCと同じ幅 */
-    height: 250px;    /* PCと同じ高さ */
+    width: 100%;
+    height: 200px;
     margin: 15px auto 0;
+    padding-top: 30px; /* 文字分スペース */
   }
 
   #roulette-img {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 30px);
     object-fit: cover;
   }
 
   #overlay-text {
-    font-size: 34px;  /* PC版と同じサイズ */
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 4.5vw;
+    top: 0;
   }
 
   #result-text {
-    font-size: 42px;  /* PC版と同じサイズ */
+    font-size: 5vw;
     margin-top: 12px;
   }
 
   #start-btn {
-    font-size: 22px;  /* PC版と同じサイズ */
-    padding: 14px 42px;
+    font-size: 4vw;
+    padding: 10px 4vw;
   }
 
   .balloon {
-    width: 30px;
-    height: 40px;
+    width: 5vw;
+    height: 7vw;
   }
 }
 </style>
