@@ -103,49 +103,49 @@ body {
   cursor: not-allowed;
 }
 
-/* ======= スマホ対応（3倍サイズ、横スクロールありOK版） ======= */
+/* ======= スマホ対応（約2.3倍サイズ、横スクロールありOK版） ======= */
 @media (max-width: 480px) {
   body {
-    overflow-x: auto; /* 横スクロールOKに */
+    overflow-x: auto; /* 横スクロール許可 */
   }
 
   .container {
     margin-top: 60px;
     padding: 0 10px;
-    width: 770px; /* 画面幅より大きい幅を固定 */
+    width: 590px; /* 画像＋余白 */
   }
 
   .image-wrapper {
-    width: 750px;       /* 元の250pxの3倍 */
-    height: 750px;
+    width: 575px;      /* 元250pxの2.3倍 */
+    height: 575px;
     margin: 30px auto 0;
   }
 
   #roulette-img {
-    width: 750px;
-    height: 750px;
+    width: 575px;
+    height: 575px;
     border-radius: 14px;
   }
 
   #overlay-text {
-    font-size: 100px;  /* 超大きめ */
-    top: 20px;
+    font-size: 80px;
+    top: 18px;
   }
 
   #result-text {
-    font-size: 110px;
-    margin-top: 40px;
+    font-size: 85px;
+    margin-top: 36px;
   }
 
   #start-btn {
-    font-size: 36px;
-    padding: 24px 72px;
-    border-radius: 60px;
+    font-size: 30px;
+    padding: 20px 60px;
+    border-radius: 50px;
   }
 
   .balloon {
-    width: 80px;
-    height: 108px;
+    width: 64px;
+    height: 86px;
   }
 }
 </style>
